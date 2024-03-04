@@ -80,7 +80,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     // Token 으로 유저 정보 ..
     public void setAuthentication(String token) {
-//        Authentication authentication = jwtTokenProvider;
+        // 토큰으로부터 유저정보
+        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+
+        // SecurityContext 에 Authentication 저장
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
 }
